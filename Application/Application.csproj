@@ -6,4 +6,24 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Auths\Profiles\" />
+    <Folder Include="Features\Auths\Queries\" />
+    <Folder Include="Features\Restaurants\Profiles\" />
+    <Folder Include="Features\Restaurants\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.5.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.1" />
+    <PackageReference Include="MediatR" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\RestaurantOrderAPI\Core.Application\Core.Application.csproj" />
+    <ProjectReference Include="..\RestaurantOrderAPI\Core.CrossCuttingConcerns\Core.CrossCuttingConcerns.csproj" />
+    <ProjectReference Include="..\RestaurantOrderAPI\Core.Security\Core.Security.csproj" />
+  </ItemGroup>
+
 </Project>

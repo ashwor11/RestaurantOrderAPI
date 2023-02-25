@@ -30,6 +30,11 @@ namespace Core.Security.Extensions
         {
             roles.ToList().ForEach(x => claims.Add(new(ClaimTypes.Role, x)));
         }
+        public static int GetUserId(this ClaimsPrincipal claimsPrincipal)
+        {
+            return Convert.ToInt32(claimsPrincipal?.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value);
+
+        }
 
 
     }

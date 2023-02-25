@@ -17,10 +17,10 @@ namespace Core.Persistence.Repositories
         protected TContext Context { get; }
         public EfRepositoryBase(TContext context)
         {
-            Context = Context;
+            Context = context;
         }
 
-        public TEntity? Get(Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include)
+        public TEntity? Get(Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null)
         {
             IQueryable<TEntity> queryable = Query().AsQueryable();
             queryable = queryable.Where(predicate);
@@ -28,7 +28,7 @@ namespace Core.Persistence.Repositories
             return queryable.FirstOrDefault();
         }
 
-        public IPaginate<TEntity> GetList(Expression<Func<TEntity, bool>>? predicate, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy, int size = 10, int index = 0, bool enableTracking = true)
+        public IPaginate<TEntity> GetList(Expression<Func<TEntity, bool>>? predicate, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null, int size = 10, int index = 0, bool enableTracking = true)
         {
             IQueryable<TEntity> queryable = Query().AsQueryable();
             if (enableTracking != true) queryable = queryable.AsNoTracking();
@@ -66,7 +66,7 @@ namespace Core.Persistence.Repositories
         }
 
         public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity,
-                                                                            object>>? include, bool enableTracking = true, CancellationToken cancellationToken = default)
+                                                                            object>>? include = null, bool enableTracking = true, CancellationToken cancellationToken = default)
         {
             IQueryable<TEntity> queryable = Query().AsQueryable();
             if (!enableTracking) queryable.AsNoTracking();

@@ -14,8 +14,9 @@ namespace Core.Security
     {
         public static IServiceCollection AddCoreSecurityService(this IServiceCollection services, IConfiguration configuration)
         {
-            services.Configure<TokenOptions>(options => { configuration.GetSection("TokenOptions"); });
-            services.Configure<TokenValidationParameters>(options => { configuration.GetSection("TokenValidationParameters"); });
+            services.Configure<TokenOptions>(opt => { configuration.GetSection("TokenOptions").Bind(opt); });
+            services.Configure<TokenValidationParameters>(opt => { configuration.GetSection("TokenValidationParameters").Bind(opt); });
+
             return services;
         }
     }

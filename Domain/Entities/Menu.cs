@@ -13,5 +13,11 @@ namespace Domain.Entities
         public virtual ICollection<Campaign> Campaigns { get; set; }
         public virtual ICollection<Category> Categories { get; set; }
         public virtual Restaurant Resturant { get; set; }
+
+        public Menu()
+        {
+            Campaigns = new HashSet<Campaign>();
+            Categories = new HashSet<Category>();
+        }
     }
 }

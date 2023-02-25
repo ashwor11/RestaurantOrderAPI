@@ -11,8 +11,13 @@ namespace Domain.Entities
     public class Restaurant : Entity
     {
         public string Name { get; set; }
-        public int UserId { get; set; }
-        public virtual User User { get; set; }
+        public int OwnerId { get; set; }
+        public virtual Owner Owner { get; set; }
         public virtual Menu Menu { get; set; }
+
+        public Restaurant()
+        {
+            Menu = new Menu();
+        }
     }
 }

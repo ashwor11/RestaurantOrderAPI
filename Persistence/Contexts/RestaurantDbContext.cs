@@ -10,7 +10,7 @@ namespace Persistence.Contexts
     public class RestaurantDbContext : DbContext
     {
         public IConfiguration _configuration { get; set; }
-        public DbSet<User> Users{ get; set; }
+        public DbSet<Owner> Owners{ get; set; }
         public DbSet<Restaurant> Restaurants{ get; set; }
         public DbSet<Menu> Menus { get; set; }
         public DbSet<Campaign> Campaigns { get; set; }
@@ -37,9 +37,9 @@ namespace Persistence.Contexts
 
             modelBuilder.Entity<Restaurant>(r =>
             {
-                r.HasOne(r => r.User)
+                r.HasOne(r => r.Owner)
                 .WithMany()
-                .HasForeignKey(r =>r.UserId);
+                .HasForeignKey(r =>r.OwnerId);
 
                 r.HasOne(r => r.Menu)
                 .WithOne(m => m.Resturant);
@@ -121,6 +121,12 @@ namespace Persistence.Contexts
                 d.HasOne(d => d.Category)
                 .WithMany(c => c.Drinks);
 
+            });
+
+            modelBuilder.Entity<Owner>(o =>
+            {
+                o.HasMany(o => o.Restaurants)
+                .WithOne(r => r.Owner);
             });
 
             
