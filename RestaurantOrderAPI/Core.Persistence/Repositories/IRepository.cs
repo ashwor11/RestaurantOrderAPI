@@ -11,11 +11,11 @@ namespace Core.Persistence.Repositories
 {
     public interface IRepository<T> : IQuery<T> where T : Entity
     {
-        T? Get(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include);
+        T? Get(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null);
 
-        IPaginate<T> GetList(Expression<Func<T, bool>>? predicate,
-                  Func<IQueryable<T>, IIncludableQueryable<T, object>>? include,
-                  Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy,
+        IPaginate<T> GetList(Expression<Func<T, bool>>? predicate = null,
+                  Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null,
+                  Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
                   int size = 10,
                   int index = 0,
                   bool enableTracking = true);

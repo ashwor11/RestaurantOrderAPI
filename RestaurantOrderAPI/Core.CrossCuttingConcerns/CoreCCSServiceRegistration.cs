@@ -13,7 +13,7 @@ namespace Core.CrossCuttingConcerns
     {
         public static IServiceCollection AddCoreCCSServiceRegistration(this IServiceCollection services, IConfiguration configuration)
         {
-            services.Configure<FileLogConfiguration>(options => { configuration.GetSection("FileLogConfiguration"); });
+            services.Configure<FileLogConfiguration>(options => { configuration.GetSection("FileLogConfiguration").Bind(options); });
             return services;
         }
     }

@@ -12,9 +12,11 @@
 
   <ItemGroup>
     <Folder Include="Helpers\" />
+    <Folder Include="Mailing\Mailkit\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MailKit" Version="3.6.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0" />
 	<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
 	<PackageReference Include="Otp.NET" Version="1.3.0" />

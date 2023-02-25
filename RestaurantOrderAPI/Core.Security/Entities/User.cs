@@ -16,7 +16,7 @@ namespace Core.Security.Entities
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public bool IsVerified { get; set; }
-        public VertificationType VertificationType { get; set; }
+        public VerificationType VerificationType { get; set; }
 
         public virtual ICollection<UserOperationClaim> UserOperationClaims { get; set; }
         public virtual ICollection<RefreshToken> RefreshTokens { get; set; }
@@ -28,7 +28,7 @@ namespace Core.Security.Entities
         }
 
         public User(string firstName, string lastName, string email, byte[] passwordHash, byte[] passwordSalt,
-                    bool isVerified, VertificationType vertificationType) : this()
+                    bool isVerified, VerificationType verificationType) : this()
         {
             FirstName = firstName;
             LastName = lastName;
@@ -36,7 +36,7 @@ namespace Core.Security.Entities
             PasswordHash = passwordHash;
             PasswordSalt = passwordSalt;
             IsVerified = isVerified;
-            VertificationType = vertificationType;
+            VerificationType = verificationType;
         }
     }
 }

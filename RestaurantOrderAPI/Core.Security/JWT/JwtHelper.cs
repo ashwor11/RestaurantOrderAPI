@@ -14,12 +14,14 @@ namespace Core.Security.JWT
     {
         private readonly TokenOptions _tokenOptions;
         private readonly TokenValidationParameters _tokenValidationParameters;
+        private readonly EmailVerificationTokenOptions _emailVerificationTokenOptions;
 
-        public JwtHelper(IConfiguration configuration, IOptions<TokenValidationParameters> tokenValidationParameters, IOptions<TokenOptions> tokenOptions)
+        public JwtHelper(IConfiguration configuration, IOptions<TokenValidationParameters> tokenValidationParameters, IOptions<TokenOptions> tokenOptions, IOptions<EmailVerificationTokenOptions> emailVerificationTokenOptions)
         {
 
             _tokenOptions = tokenOptions.Value;
             _tokenValidationParameters = tokenValidationParameters.Value;
+            _emailVerificationTokenOptions = emailVerificationTokenOptions.Value;
 
         }
 
@@ -62,6 +64,19 @@ namespace Core.Security.JWT
             return false;
         }
 
+        public string CreateEmailVerificationToken(User user)
+        {
+            JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
+            SecurityKey securityKey = SecurityKeyHelper.CreateSecurityKey(_emailVerificationTokenOptions.SecretKey);
+            SigningCredentials credentials = SigningCredentialsHelper.CreateSigningCredentials(securityKey);
+            
+            List<Claim> claims = new List<Claim>();
+            claims.Add(new Claim(ClaimTypes.Email, user.Email));
+
+            JwtSecurityToken jwt = new(_tokenOptions.Issuer,_tokenOptions.Audience,claims,DateTime.UtcNow,DateTime.UtcNow.AddMinutes(_emailVerificationTokenOptions.TokenExpiration),credentials);
+            return handler.WriteToken(jwt);
+        }
+
         private JwtSecurityToken CreateJwtSecurityToken(User user, TokenOptions tokenOptions, IList<OperationClaim> operationClaims)
         {
             SecurityKey securityKey = SecurityKeyHelper.CreateSecurityKey(_tokenOptions.SecurityKey);
@@ -86,6 +101,16 @@ namespace Core.Security.JWT
         {
             return null;
         }
+
+        public ClaimsPrincipal ValidateEmailVerificationToken(string token, out SecurityToken securityToken)
+        {
+            JwtSecurityTokenHandler handler = new();
+            _tokenValidationParameters.IssuerSigningKey =
+                SecurityKeyHelper.CreateSecurityKey(_emailVerificationTokenOptions.SecretKey);
+            ClaimsPrincipal claims = handler.ValidateToken(token, _tokenValidationParameters, out securityToken);
+            return claims;
+        }
+
 
 
     }

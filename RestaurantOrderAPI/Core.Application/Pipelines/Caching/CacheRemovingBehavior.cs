@@ -14,6 +14,12 @@ namespace Core.Application.Pipelines.Caching
         private readonly IDistributedCache _cache;
         private readonly ILogger<CacheRemovingBehavior<TRequest, TResponse>> _logger;
 
+        public CacheRemovingBehavior(IDistributedCache cache, ILogger<CacheRemovingBehavior<TRequest, TResponse>> logger)
+        {
+            _cache = cache;
+            _logger = logger;
+        }
+
         public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
         {
             if (request.BypassCache) return await next();

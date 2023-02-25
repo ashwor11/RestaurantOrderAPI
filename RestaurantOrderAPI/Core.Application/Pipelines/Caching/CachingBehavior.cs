@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
 
 namespace Core.Application.Pipelines.Caching
 {
@@ -16,11 +17,11 @@ namespace Core.Application.Pipelines.Caching
         private readonly ILogger<CachingBehavior<TRequest, TResponse>> _logger;
         private readonly CacheSettings _cacheSettings;
 
-        public CachingBehavior(IDistributedCache cache, ILogger<CachingBehavior<TRequest, TResponse>> logger, CacheSettings cacheSettings)
+        public CachingBehavior(IDistributedCache cache, ILogger<CachingBehavior<TRequest, TResponse>> logger, IOptions<CacheSettings> cacheSettings)
         {
             _cache = cache;
             _logger = logger;
-            _cacheSettings = cacheSettings;
+            _cacheSettings = cacheSettings.Value;
         }
 
         public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
@@ -28,7 +29,7 @@ namespace Core.Application.Pipelines.Caching
             TResponse response;
             if (request.BypassCache) return await next();
 
-            byte[] cachedResponse = await _cache.GetAsync(request.CacheKey);
+            byte[]? cachedResponse = await _cache.GetAsync(request.CacheKey);
 
             if (cachedResponse == null)
             {

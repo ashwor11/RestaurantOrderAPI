@@ -8,6 +8,6 @@ namespace Core.Application.Pipelines.Authorization
 {
     public interface IAuthorizableRequest
     {
-        public string[] RequiredRoles { get; set; }
+        public string[] RequiredRoles { get; }
     }
 }

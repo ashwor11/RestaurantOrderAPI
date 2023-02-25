@@ -1,5 +1,6 @@
 ﻿using Core.Security.Entities;
 using Domain.Entities;
+using Domain.Entities.AbstractEntities;
 using Domain.Entities.CrossTableEntities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -10,16 +11,19 @@ namespace Persistence.Contexts
     public class RestaurantDbContext : DbContext
     {
         public IConfiguration _configuration { get; set; }
-        public DbSet<User> Users{ get; set; }
+        public DbSet<Owner> Owners{ get; set; }
         public DbSet<Restaurant> Restaurants{ get; set; }
         public DbSet<Menu> Menus { get; set; }
-        public DbSet<Campaign> Campaigns { get; set; }
-        public DbSet<Category> Categories { get; set; }
+        public DbSet<FoodCategory> FoodCategories { get; set; }
+        public DbSet<DrinkCategory> DrinkCategories { get; set; }
         public DbSet<Food> Foods { get; set; }
         public DbSet<Drink> Drinks { get; set; }
-        public DbSet<CampaignDrinks> CampaignDrinks { get; set; }
-        public DbSet<CampaignFoods> CampaignFoods { get; set; }
         public DbSet<RefreshToken> RefreshTokens{ get; set; }
+        public DbSet<Table> Tables { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderedProduct> OrderedProducts { get; set; }
+        public DbSet<EmailVertificator> EmailVertificators { get; set; }
+        public DbSet<OtpVerificator> OtpVertificators { get; set; }
 
 
         public RestaurantDbContext(DbContextOptions options, IConfiguration configuration) : base(options)
@@ -35,95 +39,115 @@ namespace Persistence.Contexts
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(RestaurantDbContext).Assembly);
 
+            modelBuilder.Entity<Product>().UseTpcMappingStrategy();
+            modelBuilder.Entity<Category>().UseTpcMappingStrategy();
+
             modelBuilder.Entity<Restaurant>(r =>
             {
-                r.HasOne(r => r.User)
+                r.HasOne(r => r.Owner)
                 .WithMany()
-                .HasForeignKey(r =>r.UserId);
+                .HasForeignKey(r =>r.OwnerId);
 
                 r.HasOne(r => r.Menu)
-                .WithOne(m => m.Resturant);
+                    .WithOne(m => m.Resturant);
+
+
+            });
+
+            modelBuilder.Entity<Table>(t =>
+            {
+                t.HasKey(t => t.Id);
+                t.HasOne(t => t.Restaurant)
+                    .WithMany(r => r.Tables)
+                    .HasForeignKey(t => t.RestaurantId);
+                t.HasOne(t => t.CurrentOrder)
+                    .WithOne()
+                    .HasForeignKey<Table>(t => t.OrderId)
+                    .IsRequired(false)
+                    .OnDelete(DeleteBehavior.SetNull);
+
+            });
+
+            modelBuilder.Entity<Order>(o =>
+            {
+                o.HasOne(o => o.Table)
+                    .WithMany(t => t.Orders)
+                    .HasForeignKey(o => o.TableId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            modelBuilder.Entity<OrderedProduct>(o =>
+            {
+                o.HasOne(o => o.Product)
+                    .WithMany()
+                    .HasForeignKey(o => o.ProductId);
             });
 
             modelBuilder.Entity<Menu>(m =>
             {
-                m.HasMany(m => m.Campaigns)
-                .WithOne(c => c.Menu)
-                .HasForeignKey(x => x.MenuId);
+                m.HasMany(m => m.Drinks)
+                 .WithOne(c => c.Menu)
+                 .HasForeignKey(c => c.MenuId);
 
-                m.HasMany(m => m.Categories)
+                m.HasMany(m => m.Foods)
                 .WithOne(c => c.Menu)
                 .HasForeignKey(c => c.MenuId);
+
+                m.HasOne(m => m.Resturant)
+                    .WithOne(r => r.Menu);
+
             });
 
-            modelBuilder.Entity<Category>(c =>
+            modelBuilder.Entity<FoodCategory>(c =>
             {
                 c.HasMany(c => c.Foods)
-                .WithOne(f => f.Category);
+                .WithOne(f => f.FoodCategory);
 
+               
+            });
+
+            modelBuilder.Entity<DrinkCategory>(c =>
+            {
                 c.HasMany(c => c.Drinks)
-                .WithOne(d => d.Category);
-            });
-
-            modelBuilder.Entity<Campaign>(c =>
-            {
-                c.HasOne(c => c.Menu);
-
-            });
-
-            modelBuilder.Entity<CampaignFoods>(c =>
-            {
-                c.HasKey(c => new { c.CampaignId, c.FoodId });
-
-                c.HasOne(c => c.Food)
-                .WithMany(f => f.Campaigns)
-                .HasForeignKey(key => key.FoodId)
-                .OnDelete(DeleteBehavior.NoAction);
-
-
-                c.HasOne(c => c.Campaign)
-                .WithMany(c => c.Foods)
-                .HasForeignKey(k => k.CampaignId)
-                .OnDelete(DeleteBehavior.NoAction);
-
+                .WithOne(f => f.DrinkCategory);
 
 
             });
 
-            modelBuilder.Entity<CampaignDrinks>(c =>
-            {
-                c.HasKey(c => new { c.CampaignId, c.DrinkId });
-
-                c.HasOne(c => c.Drink)
-                .WithMany(d => d.Campaigns)
-                .HasForeignKey(key => key.DrinkId)
-                .OnDelete(DeleteBehavior.NoAction);
-
-                c.HasOne(c => c.Campaign)
-                .WithMany(c => c.Drinks)
-                .HasForeignKey(key => key.CampaignId)
-                .OnDelete(DeleteBehavior.NoAction);
-
-
-
-            });
 
             modelBuilder.Entity<Food>(f =>
             {
 
-                f.HasOne(f => f.Category)
+                f.HasOne(f => f.FoodCategory)
                 .WithMany(c => c.Foods);
             });
 
             modelBuilder.Entity<Drink>(d =>
             {
 
-                d.HasOne(d => d.Category)
-                .WithMany(c => c.Drinks);
+                d.HasOne(d => d.DrinkCategory)
+                .WithMany(c => c.Drinks)
+                .OnDelete(DeleteBehavior.Cascade);
 
             });
 
-            
+            modelBuilder.Entity<Owner>(o =>
+            {
+                o.HasMany(o => o.Restaurants)
+                .WithOne(r => r.Owner);
+            });
+
+            modelBuilder.Entity<OtpVerificator>(o =>
+            {
+                o.HasOne(o => o.User);
+            });
+
+            modelBuilder.Entity<EmailVertificator>(e =>
+            {
+                e.HasOne(e => e.User);
+            });
+
+
 
 
 

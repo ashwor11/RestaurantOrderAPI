@@ -11,5 +11,6 @@ namespace Core.Security.Vertification.OtpVertification
         public Task<byte[]> GenerateSecretKey();
         public Task<string> ConvertSecretKeyToString(byte[] secretKey);
         public Task<bool> VerifyCode(byte[] secretKey, string code);
+        public string CreateOtpUri(string secretKey, string email, string applicationName);
     }
 }

@@ -31,5 +31,11 @@ namespace Core.Security.Vertification.OtpVertification.OtpNet
             bool result = totpCode.Equals(code);
             return Task.FromResult(result);
         }
+
+        public string CreateOtpUri(string secretKey, string email, string applicationName)
+        {
+            OtpUri uri = new(OtpType.Totp,secretKey, email, applicationName);
+            return uri.ToString();
+        }
     }
 }

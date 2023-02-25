@@ -1,0 +1,95 @@
+﻿using Application.Services.AuthService;
+using Application.Services.Repositories;
+using Core.CrossCuttingConcerns.Exceptions;
+using Core.Security.Entities;
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
+using Core.Security.Enums;
+using Core.Security.Extensions;
+using Core.Security.JWT;
+using Domain.Entities;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+
+namespace Application.Features.Auths.Rules
+{
+    public class AuthBusinessRules
+    {
+        private readonly IAuthRepository _authRepository;
+        private readonly TokenValidationParameters _tokenValidationParameters;
+        private readonly TokenOptions _tokenOptions;
+
+        public AuthBusinessRules(IAuthRepository authRepository, IOptions<TokenValidationParameters> tokenValidationParameters, IOptions<TokenOptions> tokenOptions)
+        {
+            _authRepository = authRepository;
+            _tokenValidationParameters = tokenValidationParameters.Value;
+            _tokenOptions = tokenOptions.Value;
+            _tokenValidationParameters.IssuerSigningKey =
+                new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokenOptions.SecurityKey));
+        }
+
+        public async Task IsUserAlreadyExists(string email) { User? user = await _authRepository.GetAsync(x => x.Email == email); if (user != null) throw new BusinessException("User already exists."); }
+        public void IsUserExists(User user) {if (user == null) throw new BusinessException("User does not exist."); }
+
+        public void IsTokenValid(string accessToken)
+        {
+            JwtSecurityTokenHandler jwtHandler = new JwtSecurityTokenHandler();
+            _tokenValidationParameters.ValidateLifetime = false;
+            jwtHandler.ValidateToken(accessToken, _tokenValidationParameters, out var validatedToken);
+
+        }
+
+        public void RefreshTokenMustBeExistWhenRequested(RefreshToken refreshToken)
+        {
+            if (refreshToken == null) throw new BusinessException("Refresh token does not exist.");
+        }
+
+        public void RefreshTokenMustNotBeExpired(RefreshToken refreshToken)
+        {
+            if (DateTime.Now > refreshToken.ExpireDate) throw new BusinessException("Refresh token is expired.");
+        }
+
+        public void RefreshTokenAndAccessTokenMustBeOwnedBySameUser(RefreshToken refreshToken, ClaimsPrincipal claims)
+        {
+            if (refreshToken.UserId != claims.GetUserId())
+                throw new BusinessException("Refresh token user and jwt user does not match.");
+        }
+
+        public void DoesUserAlreadyHaveAVertificator(Owner owner)
+        {
+            if (owner.VerificationType != VerificationType.None)
+                throw new BusinessException("User already has a vertificatitor.");
+        }
+
+        public void DoesEmailVerificatorExists(EmailVertificator emailVertificator)
+        {
+            if (emailVertificator == null) throw new BusinessException("Email verificator does not exist.");
+        }
+
+        public void DoesOtpVerificatorExists(OtpVerificator otpVerificator)
+        {
+            if (otpVerificator == null) throw new BusinessException("Otp verificator does not exist.");
+        }
+
+        public void IsTokenExpired(SecurityToken token)
+        {
+            if (token.ValidTo < DateTime.UtcNow) throw new BusinessException("The token has expired.");
+        }
+
+        public void ClaimsContainsEmailClaim(ClaimsPrincipal claims)
+        {
+            if (!claims.HasClaim(x => x.Type == ClaimTypes.Email))
+                throw new BusinessException("Token does not have an email claim");
+        }
+
+        public void IsUserAlreadyVerified(Owner owner)
+        {
+            if (owner.IsVerified) throw new BusinessException("User already verified");
+        }
+    }
+}

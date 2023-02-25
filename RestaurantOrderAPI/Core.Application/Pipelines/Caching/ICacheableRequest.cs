@@ -9,7 +9,7 @@ namespace Core.Application.Pipelines.Caching
     public interface ICacheableRequest
     {
         public bool BypassCache { get; set; }
-        public string CacheKey { get; set; }
+        public string CacheKey { get; }
         public int SlidingExpiration { get; set; }
     }
 }

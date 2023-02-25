@@ -1,9 +1,63 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Auths\Commands\EnableEmailVertification\" />
+    <Folder Include="Features\Auths\Commands\VerifyOtpVerification\" />
+    <Folder Include="Features\Auths\Commands\VerifyEmailVertification\" />
+    <Folder Include="Features\Auths\Commands\Refresh\" />
+    <Folder Include="Features\Auths\Messages\" />
+    <Folder Include="Features\Auths\Profiles\" />
+    <Folder Include="Features\Auths\Queries\" />
+    <Folder Include="Features\DrinkCategories\Enums\" />
+    <Folder Include="Features\DrinkCategories\Profiles\" />
+    <Folder Include="Features\DrinkCategories\Queries\GetDrinkCategoryWithId\" />
+    <Folder Include="Features\FoodCategories\Commands\UpdateFoodCategory\" />
+    <Folder Include="Features\Foods\Enums\" />
+    <Folder Include="Features\Drinks\Enums\" />
+    <Folder Include="Features\Foods\Queries\GetFoodById\" />
+    <Folder Include="Features\Menus\Commands\" />
+    <Folder Include="Features\Menus\Dtos\" />
+    <Folder Include="Features\Menus\Enums\" />
+    <Folder Include="Features\Menus\Profiles\" />
+    <Folder Include="Features\Menus\Rules\" />
+    <Folder Include="Features\Menus\Queries\" />
+    <Folder Include="Features\Orders\Commands\" />
+    <Folder Include="Features\Orders\Dtos\" />
+    <Folder Include="Features\Orders\Models\" />
+    <Folder Include="Features\Orders\Profiles\" />
+    <Folder Include="Features\Orders\Rules\" />
+    <Folder Include="Features\Orders\Queries\" />
+    <Folder Include="Features\Tables\Commands\CreateTable\" />
+    <Folder Include="Features\Tables\Commands\AddProductToOrder\" />
+    <Folder Include="Features\Tables\Commands\PayPriceOfProduct\" />
+    <Folder Include="Features\Tables\Models\" />
+    <Folder Include="Features\Tables\Profiles\" />
+    <Folder Include="Features\Tables\Rules\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Services\OrderService\" />
+    <Folder Include="Services\TableService\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="FluentValidation" Version="11.5.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.1" />
+    <PackageReference Include="MediatR" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core.Utility\Core.Utility.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\RestaurantOrderAPI\Core.Application\Core.Application.csproj" />
+    <ProjectReference Include="..\RestaurantOrderAPI\Core.CrossCuttingConcerns\Core.CrossCuttingConcerns.csproj" />
+    <ProjectReference Include="..\RestaurantOrderAPI\Core.Security\Core.Security.csproj" />
+  </ItemGroup>
 
 </Project>

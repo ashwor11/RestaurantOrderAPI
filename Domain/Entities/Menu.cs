@@ -10,8 +10,14 @@ namespace Domain.Entities
     public class Menu : Entity
     {
         public int RestaurantId { get; set; }
-        public virtual ICollection<Campaign> Campaigns { get; set; }
-        public virtual ICollection<Category> Categories { get; set; }
+        public ICollection<FoodCategory> Foods { get; set; }
+        public ICollection<DrinkCategory> Drinks { get; set; }
         public virtual Restaurant Resturant { get; set; }
+
+        public Menu()
+        {
+            Foods = new HashSet<FoodCategory>();
+            Drinks = new HashSet<DrinkCategory>();
+        }
     }
 }
