@@ -472,7 +472,7 @@ namespace Persistence.Migrations
                     b.Property<int>("FoodCategoryId")
                         .HasColumnType("int");
 
-                    b.HasIndex("FoodCategoryId");
+                    b.HasKey("Id");
 
                     b.ToTable("Foods");
                 });
@@ -635,7 +635,7 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("FoodCategory");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Core.Security.Entities.User", b =>
@@ -652,12 +652,7 @@ namespace Persistence.Migrations
                     b.Navigation("Foods");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Order", b =>
-                {
-                    b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Restaurant", b =>
+            modelBuilder.Entity("Domain.Entities.Category", b =>
                 {
                     b.Navigation("Menu")
                         .IsRequired();
@@ -683,6 +678,11 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.FoodCategory", b =>
                 {
                     b.Navigation("Foods");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Owner", b =>
+                {
+                    b.Navigation("Restaurants");
                 });
 #pragma warning restore 612, 618
         }
