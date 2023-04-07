@@ -25,7 +25,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{A02E2C63-7F72-4250-AD23-FE1C6C666259}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Utility", "Core.Utility\Core.Utility.csproj", "{176F80AB-B76E-490A-B520-9FC3F78038C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Utility", "Core.Utility\Core.Utility.csproj", "{176F80AB-B76E-490A-B520-9FC3F78038C8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F1B56B2D-5CFC-4923-8A01-E0307D43BBE6}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,12 @@
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Core.Utility\bin\Debug\net6.0\Core.Utility.deps.json
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Core.Utility\bin\Debug\net6.0\Core.Utility.dll
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Core.Utility\bin\Debug\net6.0\Core.Utility.pdb
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Core.Utility\obj\Debug\net6.0\Core.Utility.csproj.AssemblyReference.cache
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Core.Utility\obj\Debug\net6.0\Core.Utility.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Core.Utility\obj\Debug\net6.0\Core.Utility.AssemblyInfoInputs.cache
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Core.Utility\obj\Debug\net6.0\Core.Utility.AssemblyInfo.cs
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Core.Utility\obj\Debug\net6.0\Core.Utility.csproj.CoreCompileInputs.cache
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Core.Utility\obj\Debug\net6.0\Core.Utility.dll
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Core.Utility\obj\Debug\net6.0\refint\Core.Utility.dll
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Core.Utility\obj\Debug\net6.0\Core.Utility.pdb
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Core.Utility\obj\Debug\net6.0\ref\Core.Utility.dll

@@ -1,0 +1,1 @@
+2023-03-25 12:34:45.952 +03:00 [Information] {"MethodName":"<Handle>g__Handler|0","Parameters":[{"Name":null,"Value":{"RequiredRoles":["admin","moderator"],"PageNumber":0,"PageSize":10},"Type":"GetAllRestaurantsQuery"}],"User":"?"}

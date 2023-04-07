@@ -1,0 +1,96 @@
+﻿using Application.Features.Restaurants.Dtos;
+using Application.Features.Restaurants.Rules;
+<<<<<<< HEAD
+using Application.Services.AuthService;
+=======
+>>>>>>> origin/master
+using Application.Services.Repositories;
+using Domain.Entities;
+using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+<<<<<<< HEAD
+using Core.Application.Pipelines.Logging;
+
+namespace Application.Features.Restaurants.Commands.CreateRestaurant
+{
+    public class CreateRestaurantCommand : IRequest<CreatedRestaurantResponseDto>, ILoggableRequest
+=======
+
+namespace Application.Features.Restaurants.Commands.CreateRestaurant
+{
+    public class CreateRestaurantCommand : IRequest<CreatedRestaurantResponseDto>
+>>>>>>> origin/master
+    {
+        public int OwnerId { get; set; }
+        public string RestaurantName { get; set; }
+
+        public class CreateRestaurantCommandHandler : IRequestHandler<CreateRestaurantCommand, CreatedRestaurantResponseDto>
+        {
+            private readonly IRestaurantRepository _restaurantRepository;
+            private readonly RestaurantBusinessRules _restaurantBusinessRules;
+<<<<<<< HEAD
+            private readonly IAuthService _authService;
+
+            public CreateRestaurantCommandHandler(IRestaurantRepository restaurantRepository, RestaurantBusinessRules restaurantBusinessRules, IAuthService authService)
+            {
+                _restaurantRepository = restaurantRepository;
+                _restaurantBusinessRules = restaurantBusinessRules;
+                _authService = authService;
+=======
+
+            public CreateRestaurantCommandHandler(IRestaurantRepository restaurantRepository, RestaurantBusinessRules restaurantBusinessRules)
+            {
+                _restaurantRepository = restaurantRepository;
+                _restaurantBusinessRules = restaurantBusinessRules;
+>>>>>>> origin/master
+            }
+
+            public async Task<CreatedRestaurantResponseDto> Handle(CreateRestaurantCommand request, CancellationToken cancellationToken)
+            {
+                await _restaurantBusinessRules.DoesOwnerExistAndHaveRestaurantWithSameName(request.OwnerId, request.RestaurantName);
+
+<<<<<<< HEAD
+                Menu menu = new();
+
+                Restaurant restaurant = new()
+                {
+                    Name = request.RestaurantName,
+                    OwnerId = request.OwnerId,
+                    Menu = menu,
+                };
+                menu.Resturant = restaurant;
+                restaurant.Menu = menu;
+=======
+                Restaurant restaurant = new()
+                {
+                    Menu = new(),
+                    Name = request.RestaurantName,
+                    OwnerId = request.OwnerId,
+                };
+>>>>>>> origin/master
+                Restaurant createdRestaurant = await _restaurantRepository.CreateAsync(restaurant);
+
+                CreatedRestaurantResponseDto response = new()
+                {
+                    Id = createdRestaurant.Id,
+                    Name = createdRestaurant.Name,
+                    OwnerId = createdRestaurant.OwnerId
+                };
+<<<<<<< HEAD
+                await _authService.AddRestaurantClaim(request.OwnerId, response.Id);
+=======
+>>>>>>> origin/master
+                return response;
+
+            }
+
+            
+
+            
+        }
+    }
+}

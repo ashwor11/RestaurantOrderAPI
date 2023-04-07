@@ -1,0 +1,17 @@
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Domain\bin\Debug\net6.0\Domain.deps.json
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Domain\bin\Debug\net6.0\Domain.dll
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Domain\bin\Debug\net6.0\Domain.pdb
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Domain\bin\Debug\net6.0\Core.Persistence.dll
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Domain\bin\Debug\net6.0\Core.Security.dll
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Domain\bin\Debug\net6.0\Core.Persistence.pdb
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Domain\bin\Debug\net6.0\Core.Security.pdb
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Domain\obj\Debug\net6.0\Domain.csproj.AssemblyReference.cache
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Domain\obj\Debug\net6.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Domain\obj\Debug\net6.0\Domain.AssemblyInfoInputs.cache
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Domain\obj\Debug\net6.0\Domain.AssemblyInfo.cs
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Domain\obj\Debug\net6.0\Domain.csproj.CoreCompileInputs.cache
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Domain\obj\Debug\net6.0\Domain.csproj.CopyComplete
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Domain\obj\Debug\net6.0\Domain.dll
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Domain\obj\Debug\net6.0\refint\Domain.dll
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Domain\obj\Debug\net6.0\Domain.pdb
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\Domain\obj\Debug\net6.0\ref\Domain.dll

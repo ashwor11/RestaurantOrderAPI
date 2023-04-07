@@ -1,0 +1,12 @@
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\RestaurantOrderAPI\Core.CrossCuttingConcerns\bin\Debug\net6.0\Core.CrossCuttingConcerns.deps.json
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\RestaurantOrderAPI\Core.CrossCuttingConcerns\bin\Debug\net6.0\Core.CrossCuttingConcerns.dll
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\RestaurantOrderAPI\Core.CrossCuttingConcerns\bin\Debug\net6.0\Core.CrossCuttingConcerns.pdb
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\RestaurantOrderAPI\Core.CrossCuttingConcerns\obj\Debug\net6.0\Core.CrossCuttingConcerns.csproj.AssemblyReference.cache
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\RestaurantOrderAPI\Core.CrossCuttingConcerns\obj\Debug\net6.0\Core.CrossCuttingConcerns.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\RestaurantOrderAPI\Core.CrossCuttingConcerns\obj\Debug\net6.0\Core.CrossCuttingConcerns.AssemblyInfoInputs.cache
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\RestaurantOrderAPI\Core.CrossCuttingConcerns\obj\Debug\net6.0\Core.CrossCuttingConcerns.AssemblyInfo.cs
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\RestaurantOrderAPI\Core.CrossCuttingConcerns\obj\Debug\net6.0\Core.CrossCuttingConcerns.csproj.CoreCompileInputs.cache
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\RestaurantOrderAPI\Core.CrossCuttingConcerns\obj\Debug\net6.0\Core.CrossCuttingConcerns.dll
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\RestaurantOrderAPI\Core.CrossCuttingConcerns\obj\Debug\net6.0\refint\Core.CrossCuttingConcerns.dll
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\RestaurantOrderAPI\Core.CrossCuttingConcerns\obj\Debug\net6.0\Core.CrossCuttingConcerns.pdb
+C:\Users\Kerim\Documents\Projects\RestaurantOrderAPI\RestaurantOrderAPI\RestaurantOrderAPI\Core.CrossCuttingConcerns\obj\Debug\net6.0\ref\Core.CrossCuttingConcerns.dll
